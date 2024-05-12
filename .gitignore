@@ -1,0 +1,15 @@
+*
+!.gitignore
+!.gitmodules
+!README.md
+!alacritty/*
+!tmux/*
+!sway/*
+!waybar/*
+!wofi/*
+!clangd/*
+!*/
+!nvim
+!tmux/plugins/tpm
+tmux/plugins/tmux-battery
+tmux/plugins/tmux-sensible

@@ -1,0 +1,112 @@
+bar {
+	swaybar_command waybar
+}
+
+set $mod Mod4
+set $alt Mod1
+
+# shortcut to reload config
+bindsym $mod+Shift+c reload
+
+# movement shortcuts
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+
+# window movement shortcuts
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
+
+# resizing shortcuts
+bindsym $mod+r mode "resize"
+mode "resize" {
+	bindsym h resize grow width 10px
+	bindsym l resize shrink width 10px
+	bindsym k resize grow height 10px
+	bindsym j resize shrink height 10px
+
+	bindsym Return mode "default"
+}
+
+# name workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+# shortcuts to switch workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# shortcuts to move window to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+# fullscreen
+bindsym $mod+f fullscreen
+
+# close window
+bindsym $mod+Shift+q kill
+
+# set wofi as application launcher
+set $menu wofi --show drun -i | xargs swaymsg exec --
+bindsym $mod+space exec $menu
+
+# set default terminal
+set $term alacritty
+bindsym $mod+t exec $term
+
+# firefox shortcut
+bindsym $mod+b exec firefox
+
+# remove title bar
+default_border none
+
+# set wallpaper
+set $background #141414
+# output * bg $HOME/Pictures/bg_images/senna0.jpg fill
+
+# Screen locking
+set $lock swaylock -c 000000
+exec swayidle -w \
+	timeout 300 $lock \
+	timeout 270 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep $lock
+
+set $lock_screen exec bash ~/.config/sway/lock_screen.sh
+bindsym $mod+Escape exec $lock_screen
+
+# Brightness
+bindsym --locked XF86MonBrightnessDown exec light -U 5
+bindsym --locked XF86MonBrightnessUp exec light -A 5
+
+# audio
+bindsym --locked XF86AudioRaiseVolume exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+8 waybar"
+bindsym --locked XF86AudioLowerVolume exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+8 waybar"
+bindsym --locked XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+8 waybar"
+
+# numlock
+input type:keyboard xkb_numlock on

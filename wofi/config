@@ -1,0 +1,7 @@
+allow_images=true
+image_size=32
+width=600
+insensitive=true
+mode=drun,run
+lines=10
+prompt=

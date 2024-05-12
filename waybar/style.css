@@ -1,0 +1,18 @@
+* {
+  font-family: "JetbrainsMono Nerd Font", Helvetica, sans-serif;
+}
+
+#custom-audio,
+#battery,
+#network,
+#clock {
+  padding: 0 1rem;
+}
+
+#battery.warning:not(.charging) {
+  color: yellow;
+}
+
+#battery.critical:not(.charging) {
+  color: red;
+}
