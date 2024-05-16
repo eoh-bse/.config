@@ -1,7 +1,8 @@
 * {
-  font-family: "JetbrainsMono Nerd Font", Helvetica, sans-serif;
+  font-family: "JetbrainsMono Nerd Font", serif;
 }
 
+#custom-brightness,
 #custom-audio,
 #battery,
 #network,

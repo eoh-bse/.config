@@ -3,10 +3,17 @@
 	"position": "top",
 	"modules-left": ["sway/workspaces"],
 	"modules-center": [],
-	"modules-right": ["custom/audio", "battery", "network", "clock"],
+	"modules-right": ["custom/brightness", "custom/audio", "battery", "network", "clock"],
 
 	"sway/workspaces": {
 		"format": "{name}"
+	},
+
+	"custom/brightness": {
+		"format": {},
+		"interval": "once",
+		"signal": 9,
+		"exec": "bash ~/.config/sway/brightness.sh"
 	},
 
 	"custom/audio": {
