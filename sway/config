@@ -91,17 +91,15 @@ default_border none
 
 # set wallpaper
 set $background #141414
-# output * bg $HOME/Pictures/bg_images/senna0.jpg fill
+output * bg $HOME/.config/sway/senna_bg0.jpg fill
 
 # screen locking
-set $lock swaylock -c 000000
-exec swayidle -w \
-	timeout 60 $lock \
-	timeout 50 'swaymsg "output * dpms off"' \
-	resume 'swaymsg "output * dpms on"' \
-	before-sleep $lock
+exec swayidle timeout 30 'swaymsg "output * power off"' \
+	timeout 60 'swaylock -f -c 000000' \
+	timeout 600 'systemctl suspend' \
+	resume 'swaymsg "output * power on"' &
 
-set $lock_screen exec bash ~/.config/sway/lock_screen.sh
+set $lock_screen exec swaylock -f -c 000000
 bindsym $mod+Escape exec $lock_screen
 
 # screen brightness
@@ -116,4 +114,4 @@ bindsym --locked XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle;
 # numlock
 input type:keyboard xkb_numlock on
 
-exec gammastep
+exec gammastep &

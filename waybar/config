@@ -6,7 +6,8 @@
 	"modules-right": ["custom/brightness", "custom/audio", "battery", "network", "clock"],
 
 	"sway/workspaces": {
-		"format": "{name}"
+		"format": "{name}",
+		"window-rewrite": {}
 	},
 
 	"custom/brightness": {
