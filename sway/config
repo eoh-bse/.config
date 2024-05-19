@@ -94,10 +94,11 @@ set $background #141414
 output * bg $HOME/.config/sway/senna_bg0.jpg fill
 
 # screen locking
-exec swayidle timeout 30 'swaymsg "output * power off"' \
-	timeout 60 'swaylock -f -c 000000' \
+exec swayidle -w timeout 60 'swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"' \
+	timeout 90 'swaylock -f -c 000000' \
 	timeout 600 'systemctl suspend' \
-	resume 'swaymsg "output * power on"' &
+	before-sleep 'swaylock -f -c 000000'
 
 set $lock_screen exec swaylock -f -c 000000
 bindsym $mod+Escape exec $lock_screen
