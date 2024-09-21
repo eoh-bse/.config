@@ -4,7 +4,7 @@ bar {
 	swaybar_command waybar
 }
 
-output "ASUSTek COMPUTER INC VG278 R7LMQS157445" mode 1920x1080@120.000Hz
+output "ASUSTek COMPUTER INC VG278 R7LMQS157445" mode 1920x1080@60.000Hz
 
 set $mod Mod4
 set $alt Mod1
@@ -96,11 +96,16 @@ set $background #141414
 output * bg $HOME/.config/sway/senna_bg0.jpg fill
 
 # screen locking
-exec swayidle -w timeout 60 'swaymsg "output * power off"' \
+set $power_save exec swayidle -w timeout 120 'swaymsg "output * power off"' \
 	resume 'swaymsg "output * power on"' \
-	timeout 90 'swaylock -f -c 000000' \
+	timeout 180 'swaylock -f -c 000000' \
 	timeout 600 'systemctl suspend' \
 	before-sleep 'swaylock -f -c 000000'
+
+bindsym $mod+o exec "pkill swayidle"
+bindsym $mod+s exec $power_save
+
+exec $power_save
 
 set $lock_screen exec swaylock -f -c 000000
 bindsym $mod+Escape exec $lock_screen
@@ -122,3 +127,8 @@ exec gammastep &
 
 # disable laptop monitor for external monitor
 bindsym $mod+m output "eDP-1" toggle
+
+# screenshots
+bindsym $mod+p exec grimshot save active ~/Pictures/screenshots/screenshot_$(date +%s).png
+bindsym $mod+Shift+p exec grimshot save area ~/Pictures/screenshots/screenshot_$(date +%s).png
+
