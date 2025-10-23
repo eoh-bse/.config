@@ -4,7 +4,10 @@ bar {
 	swaybar_command waybar
 }
 
-output "ASUSTek COMPUTER INC VG278 R7LMQS157445" mode 1920x1080@60.000Hz
+# output "ASUSTek COMPUTER INC VG278 R7LMQS157445" mode 1920x1080@60.000Hz
+
+output HDMI-A-1 resolution 1920x1080 position 0,0
+output eDP-1 resolution 1920x1080 position 1920,0
 
 set $mod Mod4
 set $alt Mod1
@@ -71,6 +74,10 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
+# shortcuts to move workspace to another output
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+
 # fullscreen
 bindsym $mod+f fullscreen
 
@@ -85,8 +92,15 @@ bindsym $mod+space exec $menu
 set $term alacritty
 bindsym $mod+t exec $term
 
-# firefox shortcut
-bindsym $mod+b exec firefox
+# browser shortcut
+bindsym $mod+b exec brave --ozone-platform=wayland --disable-gpu-memory-buffer-video-frames
+# bindsym $mod+b exec firefox
+
+# cryptotrader
+bindsym $mod+m exec cryptotrader
+
+# disable laptop monitor for external monitor
+bindsym $mod+shift+m output "eDP-1" toggle
 
 # remove title bar
 default_border none
@@ -124,9 +138,6 @@ input type:keyboard xkb_numlock enabled
 
 # handle screen night mode
 exec gammastep &
-
-# disable laptop monitor for external monitor
-bindsym $mod+m output "eDP-1" toggle
 
 # screenshots
 bindsym $mod+p exec grimshot save active ~/Pictures/screenshots/screenshot_$(date +%s).png
