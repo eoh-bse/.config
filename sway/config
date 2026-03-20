@@ -96,9 +96,6 @@ bindsym $mod+t exec $term
 bindsym $mod+b exec brave --ozone-platform=wayland --disable-gpu-memory-buffer-video-frames
 # bindsym $mod+b exec firefox
 
-# cryptotrader
-bindsym $mod+m exec cryptotrader
-
 # disable laptop monitor for external monitor
 bindsym $mod+shift+m output "eDP-1" toggle
 
